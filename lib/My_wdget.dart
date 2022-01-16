@@ -21,28 +21,32 @@ class _MyWidget extends State<MyWidget> {
         title: const Text('Porjet flutter !!'),
       ),
       body: SingleChildScrollView(
-          child: Obx(
-        () => Center(
-          child: Column(children: [
-            StockDescription(
-              equipmentNumber: EquipmentList.length,
-            ),
-            InkWell(
-              onTap: () => Get.toNamed("new_page"),
-              child: Text("bojour"),
-            ),
-            Column(
-              children: List.generate(
-                EquipmentList.length,
-                (index) => StockWidget(
-                  equipmentName: EquipmentList[index].name ?? "Vide",
-                  equipmentNumSerie: EquipmentList[index].numSerie ?? "Vide",
+        child: Obx(
+          () => Center(
+            child: Column(
+              children: [
+                StockDescription(
+                  equipmentNumber: EquipmentList.length,
                 ),
-              ),
+                InkWell(
+                  onTap: () => Get.toNamed("new_page"),
+                  child: Text("bojour"),
+                ),
+                Column(
+                  children: List.generate(
+                    EquipmentList.length,
+                    (index) => StockWidget(
+                      equipmentName: EquipmentList[index].name ?? "Vide",
+                      equipmentNumSerie:
+                          EquipmentList[index].numSerie ?? "Vide",
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ]),
+          ),
         ),
-      )),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           EquipmentList.add(Equipment(name: "nouveau", numSerie: "salut"));
@@ -125,30 +129,33 @@ class MyDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(model ?? "rien :c",
-              style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text("n° de série : " + (serial ?? "rien :c")),
-          const Text(
-            "Info et historique => ",
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              print("bonjour");
-            },
-            child: const Text('Modifier'),
-          ),
-        ],
-      )
-    ]);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(model ?? "rien :c",
+                style: const TextStyle(fontWeight: FontWeight.bold)),
+            Text("n° de série : " + (serial ?? "rien :c")),
+            const Text(
+              "Info et historique => ",
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                print("bonjour");
+              },
+              child: const Text('Modifier'),
+            ),
+          ],
+        )
+      ],
+    );
   }
 }
